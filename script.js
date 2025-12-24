@@ -1,5 +1,5 @@
 // Configuration
-const TOTAL_CLICKS_REQUIRED = 20;
+const TOTAL_CLICKS_REQUIRED = 10;
 let clickCount = 0;
 let isOpened = false;
 
@@ -80,9 +80,9 @@ function setupGiftBox() {
 
         // Update counter text
         if (remaining === 1) {
-            clickCounter.innerHTML = '<span id="clicksRemaining">1</span> more click!';
+            clickCounter.innerHTML = '<span id="clicksRemaining">1</span> click más!';
         } else if (remaining > 0) {
-            clickCounter.innerHTML = '<span id="clicksRemaining">' + remaining + '</span> clicks to open!';
+            clickCounter.innerHTML = '<span id="clicksRemaining">' + remaining + '</span> para abrir!';
         }
 
         // Check if ready to open
