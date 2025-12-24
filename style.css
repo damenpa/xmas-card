@@ -1,0 +1,934 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #050a19 0%, #101835 40%, #1c2e55 80%, #2d3561 100%);
+    height: 100vh;
+    position: relative;
+}
+
+.scene {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Moon */
+.moon {
+    position: absolute;
+    top: 5%;
+    right: 15%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, #fffef0, #f8f5d0);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.6),
+        0 0 80px rgba(255, 255, 220, 0.4);
+    z-index: 1;
+}
+
+/* Stars */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+}
+
+/* Snow */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    font-size: 1em;
+    animation: fall linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh) rotate(360deg);
+    }
+}
+
+/* --- UPDATED SANTA & REINDEER --- */
+.santa-sleigh-container {
+    position: absolute;
+    top: 15%;
+    right: -400px;
+    /* Start further off screen */
+    animation: flyAcross 25s linear infinite;
+    z-index: 2;
+    transform: scale(0.45);
+    /* Smaller to look further away */
+    width: 500px;
+    height: 100px;
+}
+
+@keyframes flyAcross {
+    0% {
+        right: -400px;
+        top: 15%;
+        transform: scale(0.45) rotate(5deg);
+    }
+
+    25% {
+        top: 12%;
+    }
+
+    50% {
+        top: 18%;
+    }
+
+    75% {
+        top: 14%;
+    }
+
+    100% {
+        right: 110%;
+        top: 15%;
+        transform: scale(0.45) rotate(-5deg);
+    }
+}
+
+.reindeer-team {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    height: 60px;
+}
+
+.reindeer {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    background: #5d4037;
+    /* Dark Brown */
+    border-radius: 0 50% 50% 0;
+    /* Body shape */
+}
+
+.reindeer::before {
+    /* Neck/Head */
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    top: -20px;
+    left: 0;
+    background: #5d4037;
+    transform: skew(-20deg);
+    border-radius: 50% 50% 0 0;
+}
+
+.reindeer::after {
+    /* Antlers */
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    border-left: 3px solid #8d6e63;
+    border-right: 3px solid #8d6e63;
+    top: -30px;
+    left: -5px;
+}
+
+/* Reindeer Legs (Simple animation) */
+.reindeer {
+    animation: gallop 0.8s infinite alternate;
+}
+
+.r1 {
+    left: 0;
+    animation-delay: 0s;
+}
+
+.r2 {
+    left: 70px;
+    animation-delay: 0.2s;
+}
+
+.r3 {
+    left: 140px;
+    animation-delay: 0.4s;
+}
+
+@keyframes gallop {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+.nose {
+    position: absolute;
+    top: 4px;
+    /* Tip of head */
+    left: -10px;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle at 30% 30%, #ff5252, #d50000);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff1744;
+    z-index: 5;
+    animation: noseGlow 1s infinite alternate;
+}
+
+@keyframes noseGlow {
+    from {
+        box-shadow: 0 0 5px #ff1744;
+    }
+
+    to {
+        box-shadow: 0 0 15px #ff1744, 0 0 5px #fff;
+    }
+}
+
+.sleigh-body {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    width: 140px;
+    height: 50px;
+    background: #8b0000;
+    border-radius: 10px 10px 40px 10px;
+    transform: skew(-10deg);
+    border: 2px solid #d4af37;
+    /* Gold trim */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.toy-sack {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 40px;
+    height: 45px;
+    background: #795548;
+    border-radius: 40% 40% 10% 10%;
+    transform: rotate(-10deg);
+    z-index: 1;
+}
+
+.toy-sack::before {
+    /* Tie */
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%;
+    height: 4px;
+    background: #d4af37;
+}
+
+.sleigh-runners {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 160px;
+    height: 10px;
+    border-bottom: 4px solid #ffd700;
+    border-radius: 50%;
+    transform: rotate(-2deg);
+    background: transparent;
+    border-bottom: 3px solid #d4af37;
+}
+
+.sleigh-runners::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -20px;
+    height: 20px;
+    width: 3px;
+    background: #d4af37;
+    transform: skew(20deg);
+}
+
+.santa-detailed {
+    position: absolute;
+    top: -35px;
+    left: 40px;
+    width: 50px;
+    height: 50px;
+}
+
+.santa-body {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 35px;
+    background: #c41e3a;
+    border-radius: 50% 50% 0 0;
+    z-index: 2;
+}
+
+.santa-belt {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    height: 8px;
+    background: #212121;
+}
+
+.santa-belt::after {
+    /* Buckle */
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border: 2px solid #ffd700;
+}
+
+.santa-buttons {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    /* White buttons */
+    border-radius: 50%;
+    box-shadow: 0 12px 0 #fff;
+    /* Second button */
+}
+
+.santa-face {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    background: #ffccbc;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.santa-beard {
+    position: absolute;
+    top: -5px;
+    left: 8px;
+    width: 30px;
+    height: 25px;
+    background: white;
+    border-radius: 0 0 50% 50%;
+    z-index: 2;
+}
+
+.santa-hat {
+    position: absolute;
+    top: -25px;
+    left: 8px;
+    width: 30px;
+    height: 25px;
+    background: #c41e3a;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-10deg);
+    z-index: 3;
+}
+
+.santa-hat::after {
+    /* Pom pom */
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+}
+
+.sleigh-rope {
+    /* Rope to reindeer */
+    position: absolute;
+    top: 20px;
+    left: 140px;
+    /* End of reindeer group */
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(15deg);
+}
+
+
+/* --- CHRISTMAS TREE UPDATED --- */
+.christmas-tree {
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+    z-index: 10;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+.tree-layer {
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 70px solid #1a472a;
+    /* Darker pine green */
+    margin: -30px auto 0;
+    position: relative;
+    z-index: 2;
+}
+
+.tree-layer.middle {
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 90px solid #143d23;
+    z-index: 1;
+}
+
+.tree-layer.bottom {
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 110px solid #0f331c;
+    z-index: 0;
+}
+
+.tree-trunk {
+    width: 40px;
+    height: 50px;
+    background: #3e2723;
+    margin: -10px auto 0;
+    border-radius: 5px;
+}
+
+.star-topper {
+    width: 30px;
+    height: 30px;
+    background: #ffd700;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    margin: 0 auto 5px;
+    /* Moved up */
+    position: relative;
+    top: -5px;
+    position: relative;
+    z-index: 10;
+    animation: starGlow 2s infinite alternate;
+}
+
+@keyframes starGlow {
+    from {
+        filter: drop-shadow(0 0 5px #ffd700);
+    }
+
+    to {
+        filter: drop-shadow(0 0 20px #ffeb3b);
+    }
+}
+
+/* Generates A LOT of lights using box-shadow on a single element for performance */
+.lights-group-1,
+.lights-group-2 {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    top: 50px;
+    left: 50%;
+    z-index: 5;
+    animation: lightsBlink1 2s infinite alternate;
+}
+
+.lights-group-2 {
+    animation: lightsBlink2 2.5s infinite alternate-reverse;
+}
+
+/* Define positions for lights with box-shadow */
+.lights-group-1 {
+    color: #ff0000;
+    /* Main color */
+    box-shadow:
+        -20px 40px 2px #ffeb3b,
+        20px 50px 2px #2196f3,
+        -10px 80px 2px #ff5722,
+        30px 90px 2px #4caf50,
+        -40px 110px 2px #9c27b0,
+        0px 120px 2px #ffeb3b,
+        45px 130px 2px #2196f3,
+        -30px 150px 2px #f44336;
+}
+
+.lights-group-2 {
+    color: #4caf50;
+    box-shadow:
+        10px 35px 2px #ff5722,
+        -30px 60px 2px #9c27b0,
+        15px 70px 2px #f44336,
+        -15px 100px 2px #2196f3,
+        35px 110px 2px #ffeb3b,
+        -55px 130px 2px #4caf50,
+        25px 145px 2px #ff9800,
+        -10px 160px 2px #e91e63;
+}
+
+@keyframes lightsBlink1 {
+    0% {
+        opacity: 0.5;
+        filter: brightness(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes lightsBlink2 {
+    0% {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+
+    100% {
+        opacity: 0.5;
+        filter: brightness(0.8);
+    }
+}
+
+/* --- CHRISTMAS HOUSE --- */
+.house {
+    position: absolute;
+    bottom: 15%;
+    right: 5%;
+    width: 250px;
+    height: 200px;
+    z-index: 5;
+}
+
+.house-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    background: #5d4037;
+    /* Wood color */
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 19px, #3e2723 20px);
+    /* Planks */
+    box-shadow: inset 0 -20px 30px rgba(0, 0, 0, 0.5);
+}
+
+.roof {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 290px;
+    height: 90px;
+    height: 90px;
+    background: #c62828;
+    /* Red Roof */
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 2;
+}
+
+.snow-roof {
+    position: absolute;
+    top: 0;
+    /* Align with roof top */
+    left: -25px;
+    width: 300px;
+    height: 90px;
+    background: white;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 3;
+    transform: scale(1.02) translateY(-5px);
+    /* Slightly larger than roof for overhang */
+    border-radius: 5px;
+}
+
+.chimney {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 30px;
+    height: 50px;
+    background: #795548;
+    z-index: 1;
+}
+
+.smoke {
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: smokeRise 4s infinite;
+}
+
+.smoke:nth-child(2) {
+    animation-delay: 1.5s;
+    top: -10px;
+}
+
+.smoke:nth-child(3) {
+    animation-delay: 3s;
+    top: -5px;
+}
+
+@keyframes smokeRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(2.5);
+    }
+}
+
+.window {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #ffeb3b;
+    /* Warm light */
+    border: 4px solid #3e2723;
+    box-shadow: 0 0 20px #ffeb3b;
+    /* Glow */
+}
+
+.window::after,
+.window::before {
+    /* Frames */
+    content: '';
+    position: absolute;
+    background: #3e2723;
+}
+
+.window::before {
+    width: 100%;
+    height: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.window::after {
+    height: 100%;
+    width: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.w1 {
+    top: 30px;
+    left: 30px;
+}
+
+.w2 {
+    top: 30px;
+    right: 30px;
+}
+
+.door {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 80px;
+    background: #3e2723;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border: 2px solid #281a17;
+}
+
+/* Ground */
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(to bottom, #dcedf5 0%, #b8d4e3 100%);
+    border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+    box-shadow: 0 -5px 20px rgba(255, 255, 255, 0.2);
+    z-index: 4;
+}
+
+/* --- GIFT BOX UPDATED --- */
+.gift-container {
+    position: absolute;
+    top: 60%;
+    /* Slightly lower to sit better on ground */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    /* Above everything */
+}
+
+.gift-box {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    /* Faster reset */
+}
+
+/* Subtle hover effect, staying in place mainly */
+.gift-box:hover {
+    transform: scale(1.02);
+}
+
+.gift-box:active {
+    transform: scale(0.98);
+}
+
+.box-body {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.box-lid {
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    width: 170px;
+    height: 40px;
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform-origin: bottom;
+    z-index: 2;
+}
+
+.ribbon-horizontal,
+.ribbon-vertical {
+    background: linear-gradient(135deg, #ffd700 0%, #ffc107 100%);
+    /* Gold Ribbon */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ribbon-horizontal {
+    width: 100%;
+    height: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.ribbon-vertical {
+    width: 25px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+.box-lid .ribbon-vertical {
+    height: 100%;
+    top: 0;
+}
+
+.bow {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 40px;
+}
+
+.bow::before,
+.bow::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: #ffd700;
+    border-radius: 20px 20px 0 0;
+    top: 0;
+}
+
+.bow::before {
+    left: 0;
+    transform: rotate(-30deg);
+}
+
+.bow::after {
+    right: 0;
+    transform: rotate(30deg);
+}
+
+/* --- ANIMATIONS --- */
+
+.box-lid.opening {
+    animation: lidOpen 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes lidOpen {
+    0% {
+        transform: rotateX(0deg) translateY(0);
+    }
+
+    30% {
+        transform: rotateX(-40deg) translateY(-10px);
+    }
+
+    100% {
+        transform: rotateX(-140deg) translateY(-80px) translateZ(50px);
+        opacity: 0;
+    }
+}
+
+/* Subtle Shake Animation - In Place */
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(2deg) scale(1.02);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-2deg) scale(1.02);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.gift-box.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+/* Fireworks Container & Message */
+.fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+    /* Gold glow */
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 200;
+}
+
+.message.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.message h1 {
+    color: #c41e3a;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3rem;
+}
+
+.click-counter {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Mountains of Christmas', cursive;
+    color: white;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    text-align: center;
+}
+
+#clicksRemaining {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
